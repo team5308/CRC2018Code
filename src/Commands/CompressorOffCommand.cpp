@@ -29,6 +29,8 @@ void CompressorOffCommand::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void CompressorOffCommand::Execute() {
 	Robot::pneumaticsSystem->compOff();
+
+//	Robot::pneumaticsSystem->InitSolenoid();
 }
 
 // Make this return true when this Command no longer needs to run execute()

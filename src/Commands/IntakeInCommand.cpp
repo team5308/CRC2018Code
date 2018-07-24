@@ -34,9 +34,10 @@ void IntakeInCommand::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool IntakeInCommand::IsFinished() {
-	frc::XboxController Xbox1(0);
+	//如果不按住就finish这个程序
+	frc::Joystick Joystick1(0);
 
-	bool buttonvalue = Xbox1.GetRawButton(5);
+	bool buttonvalue = Joystick1.GetRawButton(2);
 	if(buttonvalue==true){
 		return false;
 	}

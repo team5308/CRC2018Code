@@ -23,7 +23,6 @@ SolenoidCommand4::SolenoidCommand4(): frc::Command() {
 
 // Called just before this Command runs the first time
 void SolenoidCommand4::Initialize() {
-
 }
 
 // Called repeatedly when this Command is scheduled to run
