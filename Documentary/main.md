@@ -104,4 +104,10 @@
             Robot::autonomusSystem->setRunDfsMode(750, true);
         }
     }
-```
+``` 
+修改方法：修改targetmode的值为 switch; scale;  
+注意站位的选择
+
+--------------------------
+
+#### AutonomousSystem .cpp/.h  
