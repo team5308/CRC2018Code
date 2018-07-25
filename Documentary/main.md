@@ -41,9 +41,12 @@
     void AutonomusCommand::Excute()
     {
         /*
-            @targetMode s
-            
+            @targetMode 
+            3 mode : switch, scale, crossline
+            modify this varible to change auto mode
         */
+        std::String targetmode = "scale";
+
         /*
             @GameDate Init
             function: store specific Game Data of direction of switch/scale
@@ -61,6 +64,7 @@
                     call corresponding auto function 
                     all avaiable functions on AutonomousSystem Doc
                 */
+                printf("left switch 2 case\n");
                 Robot::autonomusSystem->leftSwitch2Case(); 
             }
             else // if our switch is on right
@@ -69,10 +73,11 @@
                     call corresponding auto function 
                     all avaiable functions on AutonomousSystem Doc
                 */
+                printf("right switch 2 case\n");
                 Robot::autonomusSystem->rightSwitch2Case(); 
             }
         }
-        else //do scale thing or default mode
+        else if(targetmode == "scale") //do scale thing
         {
             if(GameData[1] == 'L')  // if our scale is on left 
             {
@@ -80,6 +85,7 @@
                     call corresponding auto function 
                     all avaiable functions on AutonomousSystem Doc
                 */
+                printf("left scale\n");
                 Robot::autonomusSystem->leftScale(); 
             }
             else // if our scale is on right
@@ -88,8 +94,14 @@
                     call corresponding auto function 
                     all avaiable functions on AutonomousSystem Doc
                 */
+                printf("right scale\n");
                 Robot::autonomusSystem->rightScale(); 
             } 
+        }
+        else //default mode (current cross line)
+        {
+            printf("cross line\n");
+            Robot::autonomusSystem->setRunDfsMode(750, true);
         }
     }
 ```

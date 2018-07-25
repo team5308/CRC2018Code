@@ -29,61 +29,71 @@ void AutonomousCommand::Initialize() {
 }
 
 // Called repeatedly when this Command is scheduled to run
-void AutonomousCommand::Execute() {
-	//���ػ�ȡ
-//	std::string GameData;
-//
-//	GameData = "LLL";
-//
-//	//	GameUse
-//	GameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
-//
-////	TestUse
-//
-////	Robot::autonomousSystem->testLiftAuto();
-////	Robot::autonomousSystem->setTurn(90);
-////	Robot::autonomousSystem->setRunDfsMode(200, true);
-//	bool testmode = false;
-//	 testmode = true;
-//	if(testmode)
-//	 Robot::autonomousSystem->setRunDfsMode(500, true);
-//
-//	if(GameData[1] == 'R')
-//	{
-//		Robot::autonomousSystem->AutoTestRightScaleGFromRightPosition();
-//		printf("Right Scale \n");
-//	}
-//	else
-//	{
-//		Robot::autonomousSystem->setRunDfsMode(750,false);
-//
-//
-//		printf("LEFT CROSS LINE TEST\n");
-//	}
+void AutonomusCommand::Excute()
+{
+    /*
+        @targetMode 
+        3 mode : switch, scale, crossline
+        modify this varible to change auto mode
+    */
+    std::String targetmode = "scale";
 
-//switch autonomous
+    /*
+       @GameDate Init
+        function: store specific Game Data of direction of switch/scale
+    */
+    std::String GameData = "LLL";
 
-//
-//	if(GameData[0] == 'R')
-//	{
-//		Robot::autonomousSystem->switchRight();
-//	}
-//	else
-//	{
-//		Robot::autonomousSystem->switchLeft();
-//	}
+    // get specific data from driverstation
+     GameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
 
-//switch autonomous 2 case
-
-//	if(GameData[0] == 'R')
-//	{
-//		Robot::autonomousSystem->switch2caseRight();
-//	}
-//	else
-//	{
-//		Robot::autonomousSystem->switch2caseLeft();
-//	}
-	 Robot::autonomousSystem->setRunDfsMode(100, true);
+    if(targetMode == "switch") //do switch 
+    {
+        if(GameData[0] == 'L')  // if our switch is on left 
+        {
+            /*
+                call corresponding auto function 
+                all avaiable functions on AutonomousSystem Doc
+            */
+            printf("left switch 2 case\n");
+            Robot::autonomusSystem->leftSwitch2Case(); 
+        }
+        else // if our switch is on right
+        {
+            /*
+                call corresponding auto function 
+                all avaiable functions on AutonomousSystem Doc
+            */
+            printf("right switch 2 case\n");
+            Robot::autonomusSystem->rightSwitch2Case(); 
+        }
+    }
+    else if(targetmode == "scale") //do scale thing
+    {
+        if(GameData[1] == 'L')  // if our scale is on left 
+        {
+            /*
+                call corresponding auto function 
+                all avaiable functions on AutonomousSystem Doc
+            */
+            printf("left scale\n");
+            Robot::autonomusSystem->leftScale(); 
+        }
+        else // if our scale is on right
+        {
+            /*
+               call corresponding auto function 
+                all avaiable functions on AutonomousSystem Doc
+            */
+            printf("right scale\n");
+            Robot::autonomusSystem->rightScale(); 
+        } 
+    }
+    else //default mode (current cross line)
+    {
+        printf("cross line\n");
+        Robot::autonomusSystem->setRunDfsMode(750, true);
+    }
 }
 
 // Make this return true when this Command no longer needs to run execute()
